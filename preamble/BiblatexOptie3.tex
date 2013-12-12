@@ -1,0 +1,52 @@
+\usepackage[
+        natbib=true,
+        citestyle=authoryear-comp,
+        bibstyle=authoryear,
+        hyperref=false,
+        backend=biber,
+        %bibencoding=auto,
+        maxbibnames=99,
+        uniquename=false,
+        maxcitenames=1,
+        dashed=false,
+        url=false,
+        doi=false,
+        isbn=false,
+        eprint=false
+                    ]{biblatex}
+ 
+\renewcommand{\cite}{\textcite} 
+
+% remove "in:" from articles. Thanks to Herbert.
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}}
+
+% increase vertical space between bibliography items.
+\setlength\bibitemsep{0.5ex}
+\setlength\bibnamesep{1.2ex}
+
+% makes volume of journal bold and adds colon
+\DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
+
+
+%\renewcommand*{\textcitedelim}{\addcomma\space}% if you want another delimiter
+
+%\newcommand*{\mywrapper}[1]{%
+%    \ifthenelse{\value{textcitetotal}>1}
+%    {\mkbibbrackets{#1}}
+%    {#1}}
+%
+%\makeatletter
+%\DeclareMultiCiteCommand{\cbx@textcites}[\mywrapper]{\cbx@textcite}{} 
+%
+%\DeclareCiteCommand{\cbx@textcite}[\mywrapper]
+%  {\usebibmacro{cite:init}}
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{textcite}}
+%  {}
+%  {\usebibmacro{textcite:postnote}}
+%
+%\makeatother
+
+

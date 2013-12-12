@@ -1,0 +1,44 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=0.85, transform shape]
+% STYLES
+\tikzset{
+    ellipsXL/.style={rectangle, draw, 
+    align=center,minimum width=12.5cm,minimum    
+    height=8.0cm,>=stealth}%fill=black!10
+}
+
+\tikzset{
+    ellipsM/.style={ellipse, draw, minimum width=100pt,
+    align=center,node distance=3cm,inner sep=5pt,text width=4.0cm,minimum    
+    height=3.5cm,>=stealth}%fill=black!10
+}
+
+\tikzset{
+    ellipsS/.style={ellipse, draw, minimum width=100pt,
+    align=center,node distance=3cm,inner sep=5pt,text width=1.5cm,minimum    
+    height=1.5cm,>=stealth}%fill=black!10
+}
+
+\tikzset{
+    ellipsL/.style={ellipse, draw, minimum width=100pt,
+    align=center,node distance=3cm,inner sep=5pt,text width=6.5cm,minimum    
+    height=6cm,>=stealth}%fill=black!10
+}
+
+\node [ellipsXL](World)[label=World] {};
+\node [ellipsL](Econ) [label=Economies]{};
+\node [ellipsM] (Ind)[label=Industries] {};
+\node [ellipsS] (Firms)[label=Firms] {};
+
+% Draw the links between 
+%\path[<->,thick] 
+ %  (Choices) edge node[anchor=center, text width=3.5cm, below left, midway] {Industry conditions and 
+%    firm-specific resources}  (Institutions) 
+%   (Choices) edge node[anchor=center, text width=3.5cm, below right, midway] {Formal and informal 
+%   constraints} (Organisations)
+% (Institutions) edge  node [midway, below] {interaction} node[midway, above] {Dynamic} (Organisations);
+\end{tikzpicture} 
+\caption[Levels of differentiation]{Levels of differentiation. Source: Author}%
+\label{fig:Levels} 
+\end{figure}

@@ -1,0 +1,96 @@
+%\usepackage[backend=biber,style=authoryear-luh-ipw,isbn=false,url=false]%{biblatex} ,style=historian ,citestyle=apa
+\usepackage[
+backend=biber,
+citestyle=authoryear-icomp,
+bibstyle=authortitle,
+sorting=nyt,
+bibencoding=utf8,
+dashed=false,
+maxcitenames=1,
+isbn=false,
+url=false,
+babel=hyphen,
+hyperref=true,
+doi=false]
+{biblatex}
+
+\let\cite\textcite
+
+
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\renewcommand*{\postnotedelim}{\addcolon\space}
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+\usepackage{xpatch}
+\xpretobibmacro{date+extrayear}{\addperiod\space}{}{}
+\xapptobibmacro{date+extrayear}{\nopunct}{}{}
+
+
+% Citation Hyperlinks (not just years), thanks to Audrey.
+\makeatletter
+\renewbibmacro*{cite}{% Based on cite bib macro from authoryear-comp.cbx
+  \iffieldundef{shorthand}
+    {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+       {\printtext[bibhyperref]{% Include labelname in hyperlink
+          \DeclareFieldAlias{bibhyperref}{default}% Prevent nested hyperlinks
+          \usebibmacro{cite:label}%
+          \setunit{\addspace}%
+          \usebibmacro{cite:labelyear+extrayear}}%
+          \usebibmacro{cite:reinit}}
+       {\iffieldequals{namehash}{\cbx@lasthash}
+          {\ifthenelse{\iffieldequals{labelyear}{\cbx@lastyear}\AND
+                       \(\value{multicitecount}=0\OR\iffieldundef{postnote}\)}
+             {\setunit{\addcomma}%
+              \usebibmacro{cite:extrayear}}
+             {\setunit{\compcitedelim}%
+              \usebibmacro{cite:labelyear+extrayear}%
+              \savefield{labelyear}{\cbx@lastyear}}}
+          {\printtext[bibhyperref]{% Include labelname in hyperlink
+             \DeclareFieldAlias{bibhyperref}{default}% Prevent nested hyperlinks
+             \printnames{labelname}%
+             \setunit{\nameyeardelim}%
+             \usebibmacro{cite:labelyear+extrayear}}%
+             \savefield{namehash}{\cbx@lasthash}%
+             \savefield{labelyear}{\cbx@lastyear}}}}
+    {\usebibmacro{cite:shorthand}%
+     \usebibmacro{cite:reinit}}%
+  \setunit{\multicitedelim}}
+%--------Biblatex-------------------------------------
+
+%\DeclareNameAlias{sortname}{first-last}
+
+%\DeclareCiteCommand{\cite}[\mkbibbrackets]
+ % {\usebibmacro{prenote}}
+ % {\usebibmacro{citeindex}%
+  % \usebibmacro{cite}}
+%  {\multicitedelim}
+%  {\usebibmacro{postnote}}
+
+%\DeclareCiteCommand*{\cite}[\mkbibbrackets]
+%  {\usebibmacro{prenote}}
+ % {\usebibmacro{citeindex}%
+%   \usebibmacro{citeyear}}
+%  {\multicitedelim}
+ % {\usebibmacro{postnote}}
+
+
+%\newcounter{mymaxcitenames}
+%\AtBeginDocument{%
+ % \setcounter{mymaxcitenames}{\value{maxnames}}%
+%}
+
+%\renewbibmacro*{begentry}{%
+ % \printtext[brackets]{%
+  %  \begingroup%
+ %   \defcounter{maxnames}{\value{mymaxcitenames}}%
+  %  \printnames{labelname}%
+ %   \setunit{\nameyeardelim}%
+ %   \usebibmacro{cite:labelyear+extrayear}%
+ %   \endgroup%
+  %  }%
+%  \quad% or \addspace
+%}
+
+%--------END Biblatex-------------------------------------
+

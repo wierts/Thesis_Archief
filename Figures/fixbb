@@ -1,0 +1,78 @@
+#!/usr/bin/perl -w
+# $Id: fixbb 283 2006-12-27 21:49:57Z martin $
+use strict;
+
+# fixbb
+# Fixing the BoundingBox in EPS-Files
+
+# Copyright (c) 2005 by Martin Scharrer <martin@scharrer-online.de>
+# This is free software under the GPLv2 or later
+# Check also http://www.scharrer-online.de/software/
+#
+# Version: 0.5 (still quick and a little dirty)
+
+# Program outline:
+# 1. Uses ghostscript to get real bounding box
+# 2. Writes file data from infile to outfile exchanges the bounding box header
+#
+# Example:
+# fixbb infile.eps outfile.eps
+# epstopdf outfile.eps # if you want a PDF
+#
+# Alternatives:
+# Also check the program 'epstool' (http://www.cs.wisc.edu/~ghost/gsview/epstool.htm)
+# which (should) does the same (but didn't good enough in one of my cases) and much more
+# Try: epstool --copy --bbox input.eps output.eps
+
+my $GS_COMMAND='gs -dNOPAUSE -dBATCH -q -sDEVICE=bbox';
+
+if (@ARGV < 2) { 
+	print STDERR "No enough filenames given.\nUsage: fixbb infile.eps outfile.eps\n";
+	exit(1); 
+}
+
+my $INFILE_NAME=$ARGV[0];
+my $OUTFILE_NAME=$ARGV[1];
+my $BBOX="";
+
+if ( ! -f $INFILE_NAME ) { print STDERR "Infile $INFILE_NAME does not exits. Aborting.\n"; exit(2); }
+# symlink attack check:
+if ( -l $OUTFILE_NAME ) { print STDERR "Outfile $OUTFILE_NAME is a symlink. Aborting.\n"; exit(2); }
+
+if ( "$INFILE_NAME" eq "-" ) { print STDERR "Can't read from stdin or pipe. Sorry.\n"; exit(3); }
+
+# Read true BoundingBox from Ghostscript
+open(GSPIPE,"$GS_COMMAND $INFILE_NAME 2>&1 |") || die "Error by calling Ghostscript!\n";
+#my @BBOX = <GSPIPE>;
+while (<GSPIPE>)
+ {
+	if (/^\%\%BoundingBox:/)
+	 { $BBOX=$_; last; }
+ }
+close(GSPIPE);
+
+if ( $BBOX eq "" ) { print STDERR "No BoundingBox found in $INFILE_NAME!\n"; exit(3); }
+
+# Now process the EPS-File
+open(INFILE,"<$INFILE_NAME") || die "Infile couldn't open!";
+open(OUTFILE,">$OUTFILE_NAME") || die "Outfile couldn't open!";
+
+while(<INFILE>)	# Read the EPS-File unless the BoundingBox line is found
+ {
+	unless (/^\%\%BoundingBox:/)
+   {
+		print OUTFILE;	# write input data to output file
+	 }
+	else { last; }
+ }
+print OUTFILE $BBOX;	# write the new BoundingBox to the output file
+while(<INFILE>)		# copy the rest of the input file to the output file
+ {
+	print OUTFILE;
+ }
+
+close(INFILE);
+close(OUTFILE);
+
+# The End
+

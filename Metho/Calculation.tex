@@ -1,0 +1,29 @@
+Eerste poging tot een berekening
+
+
+%\FPeval{\result}{clip(5+6)} $\result$
+
+
+\resetgrandtotals
+%\newcommand{\itemprice}[1]{% \itemprice{<item>} 
+%\DTLgetvalueforkey{\result}{price}{price}{item}{#1}\result% Extract data from database
+%}
+
+%The price associated with~B is \itemprice{B}.
+
+\DTLgetvalue{\ExRupee}{price}{1}{2}
+
+%\pgfmathparse{5+5} \pgfmathresult
+Onderstaande moet gelijk zijn aan
+\pgfmathmultiply{112.39}{\ExRupee} \pgfmathresult~bilion \euro% revenue in Rupee is 112.39Bn
+Sun pharma revenue
+Aan wat hier onder staat
+\pgfmathmultiply{112.39}{0.012817898} \pgfmathresult~bilion \euro% revenue in Rupee is 112.39Bn
+
+\pgfmathmultiply{85.24}{0.012817898} \pgfmathresult \euro % van crore naar Bn
+Resultaat Cipla
+% 1crore is 10 Million 
+
+
+
+%\newcommand{\ExRupee}{}

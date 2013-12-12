@@ -1,0 +1,37 @@
+\begin{tikzpicture}[scale=0.75, node distance=3.0cm, auto]
+  %\usetikzlibrary{positioning}
+
+\tikzset{  
+   punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, thick,
+           text width=4.5cm,
+           minimum height=2em,
+           text centered}
+           }
+    % Define arrow style
+\tikzset{      
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt}
+           }
+
+ \node[punkt, inner sep=5pt] (euph) {European\\ Pharmaceutical (GSK and Novartis)}
+      edge [pil,loop above] node {1} ();
+ 
+ \node[punkt, inner sep=5pt, below=2.0cm of euph] (eurit) {European \\ IT Services (Capgemini and T-systems)}     
+ edge[pil,<->,bend left=45] node [right] {3} (euph.west)
+     edge[pil,loop below] node {1} (); 
+     
+ \node[punkt, inner sep=5pt, right=2.0cm of euph] (inph) {Indian \\ Pharmaceutical (Cipla and Ranbaxy)}
+      edge[pil,<->] node {2} (euph.east)
+      edge [pil,loop above] node {1} ();
+      
+ \node[punkt, inner sep=5pt, below=2.0cm of inph] (init) {Indian \\ IT services (Infosys and WiPro)}
+      edge[pil,<->,bend right=45] node {3} (inph.east)
+      edge[pil,<->] node {2} (eurit.east)
+      edge [pil,loop below] node {1} (); 
+\end{tikzpicture}

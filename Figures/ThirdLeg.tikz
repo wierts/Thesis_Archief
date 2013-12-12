@@ -1,0 +1,26 @@
+\tikzsetnextfilename{3rdLeg}
+\begin{tikzpicture}[scale=0.7, transform shape]
+% STYLES
+\tikzset{
+    ellips1/.style={ellipse, draw, 
+    align=center, node distance=2.5cm, inner sep=5pt, >=stealth,text width=4.0cm},
+  %fill=black!10,minimum ,text width=3.3cm, height=2.75cm, text width=2.9cm,
+    ellips/.style={ellipse, draw, minimum width=100pt,
+    align=center,node distance=3cm,inner sep=5pt, text width=2cm,   
+   minimum height=1.0cm,>=stealth}%fill=black!10, 
+}
+\node [ellips1](Industry) {Industry-Based Competition};
+\node [ellips1, below=1cm of Industry](Firm) {Firm Specific Resources and Capabilities};
+\node [ellips1, below=1cm of Firm] (Institutional) {Institutional Conditions and Transitions};
+\node [ellips, right=1.5cm of Firm] (Strategy) {Strategy};
+\node [ellips, right=1.5cm of Strategy] (Performance) {Performance};
+
+% Draw the links between 
+\path[->,thick] 
+   (Industry.east) edge  (Strategy) 
+   (Firm.east) edge  (Strategy)
+   (Institutional.east) edge  (Strategy)
+   (Strategy) edge  (Performance);
+ 
+\end{tikzpicture} 
+

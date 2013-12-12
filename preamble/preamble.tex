@@ -1,0 +1,207 @@
+\usepackage{setspace}% benodigd voor spacing commando
+\usepackage[nottoc]{tocbibind}
+\usepackage{titlesec}
+%\usepackage{eucal}
+\usepackage[usenames,dvipsnames]{xcolor} %
+\usepackage{datetime} % gebruikt voor \pdfdate om juiste datum weergave te krijgen
+\usepackage{fancyhdr}
+\usepackage{graphicx}%[pdftex]
+\usepackage[utf8]{inputenc} %f ̧r Windows %direct gebruik van accenten
+\input{ix-utf8enc.dfu}% dit is om u ̃ te laden
+%\usepackage[T1]{fontenc}
+\usepackage{eurosym,tfrupee,supertabular} %tfrupee om het rupee symbool te maken 
+\usepackage[a4paper]{geometry}
+\usepackage{rotating}
+%\usepackage{parskip}
+\usepackage[small,bf,up]{caption}%[2004/07/16]
+\usepackage{tablefootnote}
+\usepackage{amsthm}% package om te assisteren bij Working Proposistions
+\usepackage{url} % om urls goed weer te geven in voetnoten
+\usepackage[toc,page,title]{appendix}
+\usepackage[multiple,flushmargin,stable]{footmisc}
+\usepackage{datatool} %databases laden in latex
+\usepackage{booktabs}% om mooie tabellen te maken
+%\usepackage{hanging}% provides the \hangpara command
+%\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage{float} %gebruikt om floatplacement te activeren
+\usepackage{tabularx,ragged2e} %in samenwerking met tabularx
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} % modified "X" column
+\usepackage{multirow}%
+\RequirePackage[l2tabu, orthodox]{nag}
+\usepackage{fixltx2e}% moet enkele latex fouten corrigeren
+\usepackage{tikz} % tekenen van plaatjes
+\usepackage{xspace} %correcte 'spaties' achter en voor comments en punten/comma'
+\usepackage[protrusion=true,expansion]{microtype} %spacing tussen letters enzo 
+\usetikzlibrary{arrows,shapes,decorations.pathmorphing,backgrounds,fit,positioning,shapes.symbols,chains}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=TikzFigures/]
+\tikzexternalize
+%\usepackage{illcmolthesis} %dit maakt de titel pagina
+
+\doublespacing%
+
+    \definecolor{gray75}{gray}{0.75}
+    \DeclareGraphicsExtensions{.png, .jpg, .pdf}%
+    \pdfcompresslevel=9
+    \graphicspath{{./Figures/}}
+
+%\DeclareUnicodeCharacter{0169}{\~u} % make the character known
+%\DeclareUnicodeCharacter{226}{\^a}
+
+%--------------Layout van A4 document-----------------
+\geometry{a4paper,
+  %includefoot,
+ % margin=2.5cm,
+  %hdivide={ ,19cm, }  
+}
+
+%------------------Footnotes--------------------------
+%\renewcommand{\footnotemargin}{1em}% onderdeel van footnotemisc
+% changes the above and sets the footnote mark just right of the left margin border.
+
+%\newcommand{\fn}[1]{\footnote{\hangpara{3em}{1} #1}}
+% makes a new footnote command \fn{} with a hanging indent of 3em (hanging indent starts after the first line)
+
+%------------Biblatex Optie 1---------------------------
+
+%\input{preamble/BiblatexOptie1}
+
+%------------Biblatex Optie 2---------------------------
+
+\input{preamble/BiblatexOptie3}% Dit is de juiste definitie voor het gebruik van de bibs
+%----------------------------CSQuotes na Biblatex
+\usepackage[babel]{csquotes}%
+\usepackage[english]{babel}%
+%------------------ FONT ----------------------------------------
+
+ \usepackage{pifont}%gebruik van checkmarkt
+ \usepackage{charter}%
+% ALTERNATIVE
+%\usepackage{lmodern}
+%\usepackage{fouriernc}
+%\usepackage{MinionPro}
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[math]{iwona}
+%\usepackage[default]{lato}
+%\usepackage{venturis2}
+%\usepackage[sf]{quattrocento}
+%\usepackage{libertine}
+
+
+
+%--------Hyperref zo laat mogelijk------------------------
+
+\usepackage[   pdftex, 
+               %  plainpages = false, 
+               %  pdfpagelabels, 
+                % pdfpagelayout = OneColumn, 
+               %   display single page, advancing flips the page - Sasa Tomic
+                % bookmarks,
+               %  bookmarksopen = true,
+                % bookmarksnumbered = true,
+               %  breaklinks = true,
+                % linktocpage,
+                 colorlinks = false,
+                % linkcolor = black,
+                % urlcolor  = black,
+                % citecolor = black,
+                % anchorcolor = black,
+                 hyperindex = true,
+               %  pageanchor = false,
+                % hyperfigures
+                 ]{hyperref}% als laatste laden om conflicten te voorkomen 
+%----------einde titel opmaak-------------------
+\floatplacement{table}{htbp} 
+\floatplacement{figure}{htbp}
+\setlength{\columnseprule}{\headrulewidth}
+\setcounter{tocdepth}{2}
+
+%------------------ END FONT ------------------
+
+\linespread{1.5} %\setlength{\parskip}{\baselineskip}
+\setlength{\headheight}{43,3pt}
+\setlength{\voffset}{0pt}
+
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}     % clear header & footer
+\fancyhead[C]{\small\sffamily\nouppercase{\leftmark}}
+%\fancyhead[L]{\includegraphics[width=.19\textwidth]{uva_logo_eng.eps}} %links logo
+\fancyhead[R]{\includegraphics[width=.19\textwidth]{uva_ENG.eps}}  %rechts logo
+%\fancyfoot[L]{\thepage}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\renewcommand{\captionfont}{\small\textit}
+
+\renewcommand{\headrule}{{\color{gray}%
+\hrule width\headwidth%
+ height\headrulewidth \vskip-\headrulewidth}
+ }
+
+\renewcommand{\footrule}{{\color{gray}% 
+  \vskip-\footruleskip\vskip-\footrulewidth%
+\hrule width\headwidth height\footrulewidth\vskip\footruleskip}
+}
+\renewcommand{\chaptermark}[1]{\markboth{\textbf{\thechapter\ #1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}{}}
+\fancyheadoffset{0cm} % zorgt er voor dat de head en foot lijnen even breed zijn als de textbreedte
+
+
+%%%%% by default first HYPERREF than Glossaries packgages
+\usepackage[acronym,toc,xindy,nomain]{glossaries}% 
+\glsdisablehyper%
+\makeglossaries%
+%____________THEOREM___________
+
+\makeatletter
+
+\newenvironment{subtheorem}[1]{%
+  \def\subtheoremcounter{#1}%
+  \refstepcounter{#1}%
+  \protected@edef\theparentnumber{\csname the#1\endcsname}%
+  \setcounter{parentnumber}{\value{#1}}%
+  \setcounter{#1}{0}%
+  \expandafter\def\csname the#1\endcsname{\theparentnumber.\Alph{#1}}%
+  \ignorespaces
+}{%
+  \setcounter{\subtheoremcounter}{\value{parentnumber}}%
+  \ignorespacesafterend
+}
+\makeatother
+\newcounter{parentnumber}
+
+
+%%%%%%%%%% stukje code voor oplopend versie nummer%%%%%%%%%%%%%
+
+\newcounter{run}
+\usepackage{catchfile}
+\IfFileExists{\jobname.runs}{%
+  \begingroup
+    \CatchFileEdef\tmp{\jobname.runs}{\endlinechar=-1\relax}%
+    \setcounter{run}{\tmp}%
+  \endgroup
+}{}
+\stepcounter{run}
+
+\usepackage{atveryend}
+\usepackage{newfile}
+\AtVeryEndDocument{%
+  \newoutputstream{runs}%
+  \openoutputfile{\jobname.runs}{runs}%
+  \addtostream{runs}{\number\value{run}}%
+  \closeoutputstream{runs}%
+}
+
+
+%%%%%%%%%%%% aanvulling voor Latex Diff  %%%%%%%%%%%%%%
+%\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}} %%%% Dit staat in thesisdw document
+%\providecommand{\DIFdel}[1]{{\protect\color{red}#1}  %%%% Dit staat in thesisdw document
+%\providecommand{\DIFadd}[1]{{\protect\color{blue}#1}} %DIF PREAMBLE  %%%% Dit staat in thesisdw document
+%\providecommand{\DIFdel}[1]{{\protect\color{red}\protect\scriptsize{#1}}}  %%%% Dit staat in thesisdw document

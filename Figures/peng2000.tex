@@ -1,0 +1,27 @@
+\begin{figure}
+\centering
+\tikzsetnextfilename{Peng_2000}
+\begin{tikzpicture}[scale=0.75, transform shape]
+% STYLES
+\tikzset{
+    ellips/.style={ellipse, draw, minimum width=100pt,
+    align=center,node distance=3cm,inner sep=5pt,text width=2.5cm,minimum    
+    height=2.0cm,>=stealth}%fill=black!10
+}
+
+\node [ellips](Choices) {Strategic Choices};
+\node [above=2cm of Choices](dummy) {};
+\node [ellips, left=1.5cm of dummy] (Institutions) {Institutions};
+\node [ellips, right=1.5cm of dummy] (Organisations) {Organisations};
+
+% Draw the links between 
+\path[<->,thick] 
+   (Choices) edge node[anchor=center, text width=3.5cm, below left, midway] {Industry conditions and 
+    firm-specific resources}  (Institutions) 
+   (Choices) edge node[anchor=center, text width=3.5cm, below right, midway] {Formal and informal 
+   constraints} (Organisations)
+ (Institutions) edge  node [midway, below] {interaction} node[midway, above] {Dynamic} (Organisations);
+\end{tikzpicture} 
+\caption[Institutions, organisations, and strategic choices]{Institutions, organisations, and strategic choices. Source:~\cite{Peng:2000ut}}%
+\label{fig:Peng2000} 
+\end{figure}

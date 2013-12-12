@@ -1,0 +1,52 @@
+\begin{figure}
+\centering
+\tikzsetnextfilename{WTO_Live_Cycles}
+\begin{tikzpicture}[scale=0.8, transform shape]
+% STYLES
+\tikzset{%
+    force/.style={%
+    node distance = 1cm, 
+    %auto,
+    rectangle,
+    rounded corners, 
+    fill=black!10,
+    node distance=3cm,
+    inner sep=5pt, 
+    text width=4cm, 
+    text badly centered, 
+    minimum height=1.3cm}
+    }
+\tikzset{%
+    dummy/.style={%
+    node distance = 1cm, 
+    %auto,
+    %rectangle,
+    %rounded corners, 
+    %fill=black!10,
+    %node distance=3cm,
+    %inner sep=5pt, 
+    %text width=4cm, 
+    %text badly centered, 
+    %minimum height=1.3cm
+    }
+             }
+% Draw forces
+\node [force] (NewMember) {New Member Accession};
+\node [force, right=1cm of NewMember] (Rules) {Rule Formulation (Trade Rounds)};
+\node [dummy, below=2cm of Rules] (dummy) {};
+\node [force, left=1cm of dummy] (Enforcement) {Rule Enforcement};
+\node [force, right=1cm of dummy] (Implement) {Rule Implementation};
+
+
+% Draw the links between forces
+\path[->,thick] 
+(NewMember) edge (Rules)
+(Rules) edge [bend left] (Implement)
+(Implement) edge [bend left] (Enforcement)
+(Enforcement) edge [bend left]  (Rules);
+
+\end{tikzpicture} 
+
+\caption[WTO life cycles]{\wto~lifecycles source:~\cite{Lawton:2009vw}}%
+\label{fig:Lawton} %
+\end{figure}

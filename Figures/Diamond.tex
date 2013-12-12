@@ -1,0 +1,31 @@
+\begin{figure}
+\centering
+\tikzsetnextfilename{Strategy_Diamond}
+\begin{tikzpicture}[scale=0.7, transform shape]
+% STYLES
+\tikzset{%
+    force/.style={%
+        rectangle,rounded corners, minimum width=100pt,
+        align=center,node distance=3cm,fill=black!10,inner sep=5pt,
+        text width=3cm,minimum height=1.75cm,>=stealth,text badly centered
+    }
+}
+% Draw forces
+\node (rivalry) {};
+\node [force, above of=rivalry] (top) {Firm strategy, structure and rivalry};
+\node [force, left=1cm of rivalry] (left) {Factor \\ Conditions};
+\node [force, right=1cm of rivalry] (right) {Demand \\ Conditions};
+\node [force, below of=rivalry] (bottom) {Related and Supporting industries};
+% Draw the links between forces
+\path[<->,thick]
+    (left) edge (right)
+    (left) edge (top)
+    (left) edge (bottom)
+    (top) edge (right)
+    (bottom) edge (right);
+    (bottom) edge (top);
+\end{tikzpicture}
+
+\caption[Porter's Diamond Model]{Porter's Diamond source:~\cite{Porter:1980to}}%
+\label{fig:diamond} 
+\end{figure}
